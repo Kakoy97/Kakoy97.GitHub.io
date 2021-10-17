@@ -38,7 +38,7 @@ lua的语法和java的差了十万八千里了，刚开始看"前人"写的代�
 
 ## 后记
 博客的搭建技术也是经我好朋友那介绍的，使用GitHub+Jekyll,有许多模板可以直接复刻
-[具体操作]( https://github.com/Huxpro/huxpro.github.io)
+[具体操作]( https://github.com/Huxpro/huxpro.github.io) 
 
 
 
