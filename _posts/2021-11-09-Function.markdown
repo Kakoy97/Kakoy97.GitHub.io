@@ -1,0 +1,134 @@
+---
+layout:     post
+title:      "C#中匿名函数的使用"
+date:       2021-11-09 00:08:00
+author:     "Kakoy"
+header-img: "img/2021-bg.jpg"
+tags:
+    - c#
+---
+
+<div>
+    <blockquote>最近在编写自己五子棋小游戏的过程当中遇到了一个难题<b>匿名函数的使用</b></blockquote>
+    <br>平常lua使用多了，导致真正使用c#开发时，完全不懂如何传入匿名函数。最后还是依靠瑞哥指点，才懂得了匿名函数的三种不同使用方法
+</div>
+
+## 传入匿名方法 使用泛型
+```cs
+namespace Test
+{
+    public class test<T>{
+
+        public List<T> list = new List<T>();
+        
+        public void AddList(T t){
+            list.Add(t);
+        }
+
+        public void XXX(Action<int,T> action){
+            for (int i = 0; i < list.Count; i++)
+            {
+                action(i,list[i]);
+            }
+        }
+    }
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var t = new test<int>();
+            t.AddList(1);
+            t.AddList(2);
+            t.AddList(3);
+            t.XXX((i,v) =>{
+                Console.WriteLine("index "+i+" ,"+v);
+            });
+        }
+    }
+}
+```
+在使用的过程中也遇到了一个坑，如果在没有指定T之前，就调用list.Add(1) 就会报错 Int不能转换为T.<br>
+按照我的理解，上文中的T是一个全局变量，当没有指定它时你用任何除T以外的数据类型去表示它，它都会报错。
+
+## 委托
+
+```cs
+namespace Test
+{
+     public class test<T>{
+
+        public List<T> list = new List<T>();
+        public delegate void CallBack(int a, T t);
+        
+        public void AddList(T t){
+            list.Add(t);
+        }
+
+        public void XXX(CallBack cb){
+            for (int i = 0; i < list.Count; i++)
+            {
+                cb(i,list[i]);
+            }
+        }
+
+
+    }
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var t = new test<int>();
+            t.AddList(1);
+            t.AddList(2);
+            t.AddList(3);
+            t.XXX((i,v) =>{
+                Console.WriteLine("index "+i+" ,"+v);
+            });
+        }      
+    }
+}
+}
+```
+委托和传入匿名函数的方式基本类似
+
+## 事件
+
+```cs
+namespace Test
+{
+
+    public class test<T>{
+
+        public List<T> list = new List<T>();
+        public delegate void CallBack(int a, T t);
+
+        public event CallBack cc;
+        
+        public void AddList(T t){
+            list.Add(t);
+        }
+
+        public void XXX(){
+            for (int i = 0; i < list.Count; i++)
+            {
+                cc(i,list[i]);
+            }
+        }
+    }
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var t = new test<int>();
+            t.AddList(1);
+            t.AddList(2);
+            t.AddList(3);
+            t.cc += (i,v) =>{
+                Console.WriteLine("index "+i+" ,"+v);
+            };
+            t.XXX();
+        }
+    }
+}
+```
+事件则是在委托的基础上去指定我们执行的函数。就相当于在你调用之前给你赋值。但是有趣的是，事件可以不断的累加,你可以不断的去+=它的函数。
