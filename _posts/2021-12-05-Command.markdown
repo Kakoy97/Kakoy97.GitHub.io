@@ -1,0 +1,182 @@
+---
+layout:     post
+title:      "「命令模式」遥控器"
+subtitle:   "Command"
+date:       2021-12-05 14:38:00
+author:     "Kakoy"
+header-img: "img/2021-bg.jpg"
+catalog: true
+tags:
+    - 设计模式
+---
+
+> “ 命令模式 ”
+
+## 什么是命令模式?
+
+命令模式的定义是将"请求"封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象,命令模式也支持可撤销的操作。说说我自己的理解，不对的地方请多多包涵，我认为命令模式知识将具体代码写在同一个同名接口里，供外部去调用，外部不需要知道我们的对象是谁，他只知道我按下某个按钮，调用这个对象的这个方法名就可以了。但是它带给我们的好处仅仅是让外部调用更加简单，让代码解耦吗，这我觉得自己还需要去深入了解它的用法。
+
+## 示例代码
+创建一个命令接口,所有的指令都继承于该接口,并且将实现execute方法，供外部调用。
+```cs
+public interface Command 
+{
+    void execute();
+}
+```
+
+接着咱们创建一个门的对象，它具有两种方法，一种是开门，一种是关门
+```cs
+public class Door : MonoBehaviour
+{
+    public void isOpend()
+    {
+        Debug.Log("门已打开");
+    }
+
+    public void isClose()
+    {
+        Debug.Log("门已关闭");
+    }
+}
+```
+接着咱们给它的使用封装在指令里面
+
+```cs
+//关门指令
+public class DoorCloseCommand : Command
+{
+    public Door door;
+
+    public DoorCloseCommand(Door door)
+    {
+        this.door = door;
+    }
+    public void execute()
+    {
+      door.isClose();
+    }
+}
+
+//开门指令
+public class DoorOpenCommand : Command
+{
+    public Door door;
+
+    public DoorOpenCommand(Door door)
+    {
+        this.door = door;
+    }
+    public void execute()
+    {
+      door.isOpend();
+    }
+}
+
+```
+咱们来看看遥控器代码，遥控器是我们的控制中心，指令绑定在按钮上以后，我们按按钮，它就会执行对应的操作啦
+```cs
+public class RemoteControl
+{
+    Command[] onCommand;    //开始按钮集合
+    Command[] offCommand;   //关闭按钮集合
+
+    public RemoteControl(int length)    //初始化遥控器按钮长度
+    {
+        onCommand = new Command[length];
+        offCommand = new Command[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            onCommand[i] = new NoneCommand();   //初始化按钮事件
+            offCommand[i] = new NoneCommand();
+        }
+    }
+    public void SetCommand(int index, Command onCommand, Command offCommand)    //将命令绑定到按钮上
+    {
+        this.onCommand[index] = onCommand;
+        this.offCommand[index] = offCommand;
+    }
+
+    public void onPress(int index){
+        onCommand[index].execute(); //点击开按钮，则会执行某样东西的开操作
+    }
+
+    public void offPress(int index){
+        offCommand[index].execute(); //点击关按钮，则会执行某样东西的关操作
+    }
+}
+
+```
+最后我们将命令绑定到按钮上试试。
+```cs
+public class Main4 : MonoBehaviour
+{
+    void Start()
+    {
+        RemoteControl remote = new RemoteControl(2);   //设定有两个按钮
+        Light light = new Light();  //创建灯对象
+        LightOnCommand lightOnCommand = new LightOnCommand(light); //将对象的开操作绑定到指令里
+        LightOffCommand lightOffCommand = new LightOffCommand(light);   //将对象的关操作绑定到指令里
+        Door door = new Door(); //创建门对象
+        DoorOpenCommand doorOpenCommand = new DoorOpenCommand(door);
+        DoorCloseCommand doorCloseCommand = new DoorCloseCommand(door);
+        remote.SetCommand(0,lightOnCommand,lightOffCommand); //将开和关的指令对象绑定到遥控器的按钮
+        remote.SetCommand(1,doorOpenCommand,doorCloseCommand);
+
+        remote.onPress(0);
+        remote.offPress(0); 
+         remote.onPress(1);
+        remote.offPress(1);
+    }
+
+}
+
+```
+![img](/img/headFirst/Command01.jpg)
+
+
+## 撤销指令与宏
+
+说白了撤销就是执行与execute相反的操作，比如我的execute方法里写的是打开灯，那么我要撤销它，就是关闭灯。因此我们可以在Command接口里加入撤销接口
+
+```cs
+public interface Command 
+{
+    void execute();
+
+    void unDo(); //撤销接口
+}
+```
+
+宏命令只的就是一次性执行很多次操作，比如我按下一个按钮，就把门关上，灯打开，电视打开。
+
+```cs
+public class MarcoCommand : Command
+{
+    public Command[] commands;
+
+    public MarcoCommand(Command[] commands)
+    {
+        this.commands = commands;
+    }
+    public void execute()
+    {
+        for(int i = 0; i<commands.length;i++)
+        {
+            commands[i].execute();
+        }
+    }
+}
+```
+接下来就把指令塞入一个数组里面，丢到宏命令里调用就行了(和上面的大同小异,只不过上面的是一个命令执行一个，而宏命令是一个命令执行多个)
+
+## 命令模式应用场景
+命令模式的应用场景也比较广泛的，比如日程安排,线程池，工作队等。试想一个工作队列，你在某一端添加命令，然后另一端线程从队列里面取出来，执行execute方法,结束后再调用下一个命令.....
+
+## 总结
+1.命令模式将发出请求的对象和执行请求的对象解耦。<br>
+2.在被解耦的两者之间是通过命令对象进行沟通的，命令对象封装了接收者和一个或一组动作<br>
+3.调用者通过调用命令对象的execute()发出请求，使接收者动作被调用<br>
+4.实际操作时，很常见的使用聪明命令对象，也就是直接实现了请求，而不是将工作委托给接收者<br>
+5.命令模式可以用来实现日志或事务系统<br>
