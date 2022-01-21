@@ -12,7 +12,8 @@ tags:
 ## Debugger for Unity
 在我们日常开发中，常常需要用到调试模式。这个插件可以让我们使用vsCode来对unity进行调试。安装完插件以后，在.vscode文件夹下对launch.json文件进行修改
 
-{
+
+
     "version": "0.2.0",
     "configurations": [
         {
@@ -78,10 +79,11 @@ tags:
             "args": []
           }
 
-    ] }
+    ] 
+
 
 <div>
-    <br>第一个配置和最后一个配置都是关联Unity的,不同之处是第一个是lua的,最后一个则是C#的。最后一个配置使用时需要将path改成自己项目里EditorInstance.json文件的路径。
+    <br>第一个配置和倒数第二个配置都是关联Unity的,不同之处是第一个是lua的,最后一个则是C#的。倒数第二个配置使用时需要将path改成自己项目里EditorInstance.json文件的路径。
     <br>
     <br>配置完成之后,我们只需将Unity和我们的vscode关联在一起:打开UNity->打开菜单栏上的Edit -> Preferences ->External Tools -> External Script Editor 改成vscode即可。
 </div>
