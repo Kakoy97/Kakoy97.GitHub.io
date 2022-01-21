@@ -12,11 +12,11 @@ tags:
 ## Debugger for Unity
 在我们日常开发中，常常需要用到调试模式。这个插件可以让我们使用vsCode来对unity进行调试。安装完插件以后，在.vscode文件夹下对launch.json文件进行修改
 
-    {
+{
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Unity-Remote",
+            "name": "Lua-Remote",
             "type": "lua",
             "request": "attach",
             "runtimeType": "Unity",
@@ -58,15 +58,27 @@ tags:
             "port": 7003,
             "printType": 1
         },
-
+    
         {            
-            "name": "Unity Editor",
+            "name": "C#-launch",
             "type": "unity",
-            "path": "/D:/unityWork/FiveDemo/Library/EditorInstance.json",
+            "path": "/E:/3.3/Library/EditorInstance.json",
             "request": "launch"
-        }
-    ]
-}
+        },
+
+        {
+            "name": "Go-Luach",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceRoot}",
+            "env": {
+              "PATH": "C:/Program Files/Go"
+            },
+            "args": []
+          }
+
+    ] }
 
 <div>
     <br>第一个配置和最后一个配置都是关联Unity的,不同之处是第一个是lua的,最后一个则是C#的。最后一个配置使用时需要将path改成自己项目里EditorInstance.json文件的路径。
