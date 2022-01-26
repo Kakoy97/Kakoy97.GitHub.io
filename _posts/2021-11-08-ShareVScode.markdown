@@ -61,7 +61,7 @@ tags:
         },
     
         {            
-            "name": "C#-launch",
+            "name": "Unity Editor",
             "type": "unity",
             "path": "/E:/3.3/Library/EditorInstance.json",
             "request": "launch"
