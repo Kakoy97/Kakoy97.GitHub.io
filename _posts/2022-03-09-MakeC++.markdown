@@ -1,0 +1,135 @@
+---
+layout:     post
+title:      "c++在vscode上面环境搭建"
+date:       2022-03-09 14:57:00
+author:     "Kakoy"
+header-img: "img/2021-bg.jpg"
+tags:
+    - vscode
+    - c++
+---
+
+最近在学习C++的知识， 但是平常用惯了vcCode导致换成VStudio自己不太习惯,整了半天终于可以在vsCode上愉快的写c++代码了。下面介绍下搭建流程:
+
+## MinGW
+
+在搭建环境的时候遇到的一个比较让人伤脑筋的点就是在线安装MinGW的时候，报了the file has been downloaded incorrectly!的错误,于是乎我采用了离线安装。<br>
+1.[下载链接]( https://sourceforge.net/projects/mingw-w64/files/)<br>
+2.选择安装包,我电脑是windows 64位的
+![img](/img/c++/markC++01.png)<br>
+3.解压到任意的目录,配置好环境变量。
+![img](/img/c++/markC++02.png)<br>
+4.ctrl+R,输入cmd,回车。在dos命令行上输入gcc -v, 显示如下图代表安装成功。
+![img](/img/c++/markC++03.png)<br>
+
+## vsCode 配置
+接下来打开vsCode进行配置<br>
+1.创建一个文件夹,在该文件夹下创建一个.cpp的文件,这时系统右下方会显示是否安装c++的提示,可以点击Install按钮进行安装。<br>
+2.安装结束以后重启vsCode。
+![img](/img/c++/markC++04.png)<br>
+3.Ctrl+Shift+P打开命令面板,输入C/C++
+![img](/img/c++/markC++05.png)<br>
+4.![img](/img/c++/markC++06.png)<br>
+5.上面配置完以后,侧边栏出现一个.vscode文件夹,并且里面有一个c_cpp_properties.json文件夹,根据下方进行配置。<br>
+
+```json
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            //将下面的路径换成自己的g++.exe的绝对路径
+            "compilerPath": "F:/MingW/mingw64/bin/g++.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
+
+```
+<br>
+6.创建Task.json文件,快捷键Ctrl+Shift+P，输入Task
+![img](/img/c++/markC++07.png)<br>
+![img](/img/c++/markC++08.png)<br>
+根据下面进行配置<br>
+
+```json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe 生成活动文件",
+            //将下面的路径换成自己的g++.exe的绝对路径
+            "command": "F:/MingW/mingw64/bin/g++.exe",
+            "args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"${workspaceFolder}\\*.cpp",
+				"${workspaceFolder}\\game\\*.cpp",
+				"-o",
+				"${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                //将下面的路径换成自己的bin的绝对路径
+                "cwd": "F:/MingW/mingw64/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail":  "编译器: F:/MingW/mingw64/bin/g++.exe"
+        }
+    ]
+}
+
+```
+
+7.最后配置launch.json文件,和上面一样,把配置中的路径替换成自己的MinGW的路径<br>
+![img](/img/c++/markC++09.png)<br>
+```json
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "g++.exe - 生成和调试活动文件",
+            "type": "cppdbg",//配置类型，只能为cppdbg
+            "request": "launch",//请求配置类型，可以为launch（启动）或attach（附加）
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",//调试程序的路径名称
+            "args": [],//调试传递参数
+            "stopAtEntry": false,
+            "cwd": "F:/MingW/mingw64/bin",
+            "environment": [],
+            "externalConsole": false,//true显示外置的控制台窗口，false显示内置终端
+            "MIMode": "gdb",
+            "miDebuggerPath": "F:\\MingW\\mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: g++.exe 生成活动文件"
+        }
+    ]
+}
+```
+
+## 大功告成，接下来执行只需要F5/ctrl+F5即可
