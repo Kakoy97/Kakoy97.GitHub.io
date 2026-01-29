@@ -1,33 +1,38 @@
-Hi, I am _@huxpro_ (Huang, Xuan), an UI/Frontend engineer & designer, accidentally growing into a compiler hacker. My current interests range from programming languages theory and implementation in general (compiler, type system, type-based formal verification, virtual machine, runtime systems, garbage collection) to software engineering in the tech industry (client-side web/mobile app development, server-side backend, user interface and UX, developer infrastructure and DX). 
+# 👋 Hi, I'm Kakoy
 
-I'm currently working on the [Hermes JavaScript Engine](https://hermesengine.dev/) at [Facebook](http://facebook.com/). I was also involved in some of the [Facebook Reality Labs](https://tech.fb.com/ar-vr/) and the [ReasonML](https://reasonml.github.io/) (now [ReScript](https://rescript-lang.org/)) efforts. I'm also passionated about [React](https://reactjs.org/) and [React Native](https://reactnative.dev/). 
+> **Indie Developer** • **Ex-Game Client Dev** • **Web3 Explorer**
 
-In the past, I worked on [Alitrip (Fliggy)](https://www.alitrip.com/) mobile and web apps under the [Alibaba Group](https://en.wikipedia.org/wiki/Alibaba_Group), found and lead front-end infrastructure team at an unicorn startup company [Beijing Weiying (a.k.a. WePiao, now acquired by Maoyan)](https://www.crunchbase.com/organization/beijing-weiying-technology), and helped [Ele.me (now acquired by Alibaba)](https://en.wikipedia.org/wiki/Ele.me) to upgrade their mobile web site into [the first influential PWA (progressive web app) in China](https://medium.com/elemefe/upgrading-ele-me-to-progressive-web-app-2a446832e509).
+"Turning fantasies into reality is a fun thing."
 
-I studied BA, Digital Media Art at [Communication University of China](https://en.wikipedia.org/wiki/Communication_University_of_China) and MS, Computer Science (with a focus on programming languages) at [Rochester Institute of Technology](https://en.wikipedia.org/wiki/Rochester_Institute_of_Technology).
+I am currently a full-time independent developer. This is my digital garden where I irregularly share insights on **Game Development** and building **Web3 Products**.
 
-##### [My PL Spectrum (WIP 🚧)](https://huangxuan.me/2020/05/05/pl-chart/)
+## 🚀 Projects (Released)
 
-I made a chart to visualize my experiences and interests on some of the programming languages. I know. I know this is always contraversial. But it's just something quite self-entertaining to do. So bare with me and have fun reading that!
+### 🌐 Web3 Tools
 
-##### Appearence
+#### 1. [Opiniflow](https://opiniflow.top/) - Arbitrage & Analysis Dashboard
+An advanced auxiliary tool for prediction markets, breaking down data silos.
+* **Cross-Platform Arbitrage**: Monitors arbitrage opportunities between Opinion and Polymarket within the same market.
+* **Real-time Alerts**: Integrated Telegram Bot to catch every market fluctuation.
+* **Deep Analysis**: Features reverse engineering of Opinion points to help optimize strategies.
 
-- [Upgrading to Progressive Web Apps][9] · [JSConf China Shanghai 2017](http://2017.jsconf.cn/)
-- Building Progressive Web Apps · [CSDI Guangzhou 2017](http://www.csdisummit.com/)
-- The State of Progressive Web App · GDG IO Redux Beijing 2017
-- PWA Rehashing · Baidu HQ Beijing 2017
-- [Service Worker 101][5] · GDG DevFest Beijing 2016
-- [Progressive Web Apps][4] · QCon Shanghai 2016
-- Progressive Web App in my POV · GDG IO Redux Beijing 2016
-- [CSS Still Sucks 2015][2] · 2015
-- [JavaScript Modularization Journey][1] · 2015
+#### 2. [Pendle Monitor Tool](https://github.com/Kakoy97/pendle_tool) - Real-time Opportunity Detector
+An automated monitoring and analysis tool based on the Pendle protocol.
+* **Management Center**: One-stop management for project lists and grouping, supporting auto-sync from the API.
+* **Price & Opportunity Sniffing**:
+    * **Auto-Test**: Checks price conversion rates (100 USDT -> YT).
+    * **High-Value Alerts**: Automatically pushes notification to Telegram when opportunities >$102 are detected.
+    * **Anomaly Monitoring**: Instant alerts for large orders or APR changes ≥2%.
+* **Smart Money Tracking**: Automatically tracks transaction records and limit orders of specific wallets to replicate pro moves.
 
-[1]: //huangxuan.me/2015/07/09/js-module-7day/
-[2]: //huangxuan.me/2015/12/28/css-sucks-2015/
-[3]: //huangxuan.me/2016/06/05/pwa-in-my-pov/
-[4]: //huangxuan.me/2016/10/20/pwa-qcon2016/
-[5]: //huangxuan.me/2016/11/20/sw-101-gdgdf/
-[6]: https://yanshuo.io/assets/player/?deck=58ac8598b123db0067292f92 "PWA Rehashing"
-[7]: https://yanshuo.io/assets/player/?deck=593ad6fbfe88c2006a0a0d6d "The State of PWA"
-[8]: https://yanshuo.io/assets/player/?deck=594d673d570c357d0698a950 "Building PWA"
-[9]: //huangxuan.me/jsconfcn2017/
+---
+
+## 🚧 In Progress
+
+### 🎮 Web3 Crypto Trading Simulator (Game)
+* **Genre**: Simulation / Strategy
+* **Tech Stack**: Lua (Core Framework)
+* **Overview**:
+    * A 2D simulation game built on a Lua framework.
+    * Inspired by real market dynamics, aiming to recreate the battle of "Information Asymmetry" and "Trading Psychology".
+    * **Status**: Core framework completed; currently designing numerical rules and gameplay mechanics.

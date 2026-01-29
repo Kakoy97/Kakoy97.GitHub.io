@@ -1,29 +1,44 @@
-Hi，我是高锦河，游戏前端程序猿。最开始接触程序是使用Java语言进行网页开发,后面"阴差阳错"变成了一名游戏开发人员,使用Untiy以及lua,c#进行开发。我会将自己开发的一些小游戏发布到博客上,记录自己日常中的一些学习心得。
+# 👋 Hi, 我是 Kakoy
+
+> **独立开发者** • **前游戏客户端开发** • **Web3 探索者**
+
+“把自己的幻想变成现实，是一件有趣的事情。”
+
+我现在是一名全职独立开发者。这里是我的数字花园，我会不定期的分享关于 **游戏开发** 与 **Web3 产品** 的构建心得。
 
 
-<!-- ##### [我的编程语言可视化 (WIP 🚧)](https://huangxuan.me/2020/05/05/pl-chart/)
+## 🚀 已上线作品 (Released)
 
-这个图表可视化了我对于各种编程语言的使用经历、兴趣，还附带了一些评语和解释等等。 啊我知道对比编程语言是一件很有争议的事情……自娱自乐一下！不要太较真哦 ;)
+### 🌐 Web3 工具类
+
+#### 1. [Opiniflow](https://opiniflow.top/) - Opinion 套利与分析面板
+针对预测市场的高级辅助工具，打通数据壁垒。
+* **跨平台套利**：支持 Opinion 和 Polymarket 之间的同市场套利机会监控。
+* **实时通知**：集成 Telegram Bot，不错过任何波动。
+* **深度分析**：具备 Opinion 积分逆向分析功能，帮助优化策略。
+
+#### 2. [Pendle Monitor Tool](https://github.com/Kakoy97/pendle_tool) - 实时机会检测工具
+基于 Pendle 协议开发的自动化监控与分析工具。
+* **管理中心**：一站式管理项目列表与分组，支持从 API 自动同步最新项目。
+* **价格与机会嗅探**：
+    * 自动测试价格转换（100 USDT -> YT）。
+    * **高价值预警**：检测到 >$102 的机会自动推送到 Telegram。
+    * **异动监控**：大额订单或 APR 变化 ≥2% 时即时通知。
+* **聪明钱追踪**：自动追踪指定钱包的交易记录与限价单，复刻高手操作。
 
 
-##### 演讲与分享
+## 🚧 正在孵化 (In Progress)
 
-- [Upgrading to Progressive Web Apps][9] · [JSConf CN 上海 2017](http://2017.jsconf.cn/)
-- Building Progressive Web Apps · [CSDI 广州 2017](http://www.csdisummit.com/)
-- The State of Progressive Web App · GDG IO Redux 北京 2017
-- 炒冷饭 · PWA 到底是个什么玩意？· Baidu HQ 北京 2017
-- [Service Worker 101][5] · GDG DevFest 北京 2016
-- [Progressive Web App，复兴序章][4] · [QCon 上海 2016](http://2016.qconshanghai.com/presentation/3111)
-- Progressive Web App 之我见 · GDG IO Redux 北京 2016
-- [CSS Still Sucks 2015][2] · 2015
-- [JavaScript 模块化七日谈][1] · 2015
+### 🎮 Web3 炒币模拟器 (Game)
+* **类型**：模拟经营 / 策略
+* **技术栈**：Lua (核心框架)
+* **简介**：
+    * 这是一个基于 Lua 框架构建的 2D 模拟游戏。
+    * 灵感来源于真实的市场博弈，旨在还原“信息差”与“交易心理”的对抗体验。
+    * 目前框架已搭建完成，正在进行核心规则的数值设计。
 
-[1]: //huangxuan.me/2015/07/09/js-module-7day/
-[2]: //huangxuan.me/2015/12/28/css-sucks-2015/
-[3]: //huangxuan.me/2016/06/05/pwa-in-my-pov/
-[4]: //huangxuan.me/2016/10/20/pwa-qcon2016/
-[5]: //huangxuan.me/2016/11/20/sw-101-gdgdf/
-[6]: https://yanshuo.io/assets/player/?deck=58ac8598b123db0067292f92 "PWA Rehashing"
-[7]: https://yanshuo.io/assets/player/?deck=593ad6fbfe88c2006a0a0d6d "The State of PWA"
-[8]: https://yanshuo.io/assets/player/?deck=594d673d570c357d0698a950 "Building PWA"
-[9]: //huangxuan.me/jsconfcn2017/ -->
+
+## 🛠️ 技术栈
+* **Frontend**: Vue
+* **Backend**: Python
+* **Game Dev**: Lua, Unity
