@@ -29,7 +29,6 @@ description: "从手工截图到 HTML→Prefab 自动化，再到单图增量修
 ![img](/img/htmlToPrefab/01.png)
 *(左边是导出效果，右边是效果图)*
 
----
 
 ## 01. 起点：Stitch 很好用，但产物和 Unity 不同路
 
@@ -57,7 +56,6 @@ Google 的 Stitch 能快速生成高质量界面，这点对独立开发非常�
 ![img](/img/htmlToPrefab/03.png)
 *(使用工具自动导出已裁剪图片)*
 
----
 
 ## 02. 方案抉择：UI Toolkit 是保底，Prefab 是主线
 
@@ -73,7 +71,6 @@ Google 的 Stitch 能快速生成高质量界面，这点对独立开发非常�
 - DOM 本质也是树
 - 能递归 DOM，就能做“自动切图 + 层级还原”
 
----
 
 ## 03. 主流程：HTML → Prefab 的八段流水线
 
@@ -92,7 +89,6 @@ Google 的 Stitch 能快速生成高质量界面，这点对独立开发非常�
 - `PrefabBuilder`：根据 `layout.json` 递归构建 Prefab
 - `LayoutIndexBuilder`：生成 `ui_index.json` 索引
 
----
 
 ## 04. 真正的难点：不是“截不截图”，是“怎么截图”
 
@@ -110,7 +106,6 @@ Google 的 Stitch 能快速生成高质量界面，这点对独立开发非常�
 ### BackgroundStack 模式
 处理多层半透明叠加，保证层叠结果和网页一致。
 
----
 
 ## 05. 我踩过的三个核心坑
 
@@ -125,7 +120,6 @@ CSS opacity 烘焙一次，Unity Image 再乘一次 alpha，会发灰。
 需要做透明度解耦，统一在 `renderOpacity` 控制。
 
 
----
 
 ## 06. 新增能力：单图修复（Repair Pipeline）
 
@@ -148,7 +142,6 @@ CSS opacity 烘焙一次，Unity Image 再乘一次 alpha，会发灰。
 ![img](/img/htmlToPrefab/04.png)
 *(智能修复模式)*
 
----
 
 ## 07. 单图修复怎么工作？
 
@@ -163,7 +156,6 @@ CSS opacity 烘焙一次，Unity Image 再乘一次 alpha，会发灰。
 
 这套流程把“反复重跑 + 盲调参数”变成了“可视化选择题”。
 
----
 
 ## 08. Smart Repair 的策略组合
 
@@ -176,7 +168,6 @@ CSS opacity 烘焙一次，Unity Image 再乘一次 alpha，会发灰。
 
 并行生成多个候选方案后，用户直接选最佳变体应用。
 
----
 
 ## 09. 手动调色：把“玄学修图”变成可控参数
 
@@ -192,7 +183,6 @@ CSS opacity 烘焙一次，Unity Image 再乘一次 alpha，会发灰。
 ![img](/img/htmlToPrefab/05.png)
 *(色差修复模式)*
 
----
 
 ## 10. 性能对比：从“全量重跑”到“单点修复”
 
@@ -208,7 +198,6 @@ CSS opacity 烘焙一次，Unity Image 再乘一次 alpha，会发灰。
 > 注：具体时间受页面复杂度、机器性能、浏览器冷启动状态影响。
 > 但“修 1 张图无需全量重跑”这个收益是稳定存在的。
 
----
 
 ## 11. 写在最后
 
